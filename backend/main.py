@@ -12,11 +12,15 @@ CORS(app)
 data = []
 
 try:
-    with open("student_productivity.csv", "r") as f:
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    csv_path = os.path.join(BASE_DIR, "student_productivity.csv")
+
+    with open(csv_path, "r") as f:
         lines = f.readlines()[1:]
         for line in lines:
             values = list(map(int, line.strip().split(",")))
             data.append(values)
+
 except FileNotFoundError:
     print("❌ CSV file not found. Make sure it's in the same folder.")
     exit()
@@ -102,16 +106,10 @@ def predict():
             float(data["noise"])
         ]
 
-        # -----------------------------
-        # PREDICTION
-        # -----------------------------
         z = sum(weights[j] * input_data[j] for j in range(n_features)) + bias
         prob = sigmoid(z)
         result = 1 if prob > 0.5 else 0
 
-        # -----------------------------
-        # SMART SUGGESTIONS
-        # -----------------------------
         suggestions = []
 
         if input_data[1] > 5:
@@ -129,9 +127,6 @@ def predict():
         if input_data[4] == 1:
             suggestions.append("🔇 Try a quieter environment")
 
-        # -----------------------------
-        # RESPONSE
-        # -----------------------------
         return jsonify({
             "prediction": "Focused" if result == 1 else "Distracted",
             "probability": round(prob, 4),
@@ -142,8 +137,8 @@ def predict():
         return jsonify({"error": str(e)}), 500
 
 # -----------------------------
-# RUN SERVER (IMPORTANT CHANGE)
+# RUN SERVER
 # -----------------------------
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # ✅ required for Render
+    port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
