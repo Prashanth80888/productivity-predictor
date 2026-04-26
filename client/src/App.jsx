@@ -32,7 +32,7 @@ function App() {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      const res = await axios.post("http://127.0.0.1:5000/predict", form);
+      const res = await axios.post("https://productivity-predictor-3-pow5.onrender.com/predict", form);
       setResult(res.data);
     } catch (err) {
       alert("Backend not connected");
