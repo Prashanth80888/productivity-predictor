@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import math
+import os   # ✅ added for deployment
 
 app = Flask(__name__)
 CORS(app)
@@ -141,7 +142,8 @@ def predict():
         return jsonify({"error": str(e)}), 500
 
 # -----------------------------
-# RUN SERVER
+# RUN SERVER (IMPORTANT CHANGE)
 # -----------------------------
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # ✅ required for Render
+    app.run(host="0.0.0.0", port=port)
