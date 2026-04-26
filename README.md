@@ -78,7 +78,7 @@ project-root/
 ### 1️⃣ Clone the repository
 
 ```
-git clone https://github.com/YOUR_USERNAME/your-repo-name.git
+git clone https://github.com/Prashanth80888/productivity-predictor.git
 cd your-repo-name
 ```
 
@@ -158,8 +158,8 @@ http://localhost:5173
 
 ## 🌐 Deployment
 
-* Frontend: https://your-frontend.vercel.app
-* Backend: https://your-backend.onrender.com
+* Frontend: https://productivity-predictor-lake.vercel.app/
+* Backend: https://productivity-predictor-3-pow5.onrender.com/
 
 ---
 
@@ -175,7 +175,7 @@ http://localhost:5173
 ## 👨‍💻 Author
 
 Prashanth Gouda
-GitHub: https://github.com/YOUR_USERNAME
+GitHub: https://github.com/Prashanth80888
 LinkedIn: (Add your link)
 
 ---
